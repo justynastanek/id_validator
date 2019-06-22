@@ -13,6 +13,10 @@ public class Main implements Runnable {
 
     public void run() {
         Validator idValidator = new ID_Validator();
-        idValidator.validate(ID);
+
+        if(idValidator.validate(ID))
+            System.out.println("Numer dowodu poprawny");
+        else
+            System.out.println("Numer dowodu niepoprawny");
     }
 }
