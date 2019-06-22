@@ -20,20 +20,11 @@ dependencies {
 
 }
 
-
-jar {
-    manifest {
-        attributes(
-                'Main-Class': 'js.id_validator.Main'
-        )
-    }
-}
-
 task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Gradle Jar File Example',
                 'Implementation-Version': version,
-                'Main-Class': 'Main'
+                'Main-Class': 'js.id_validator.Main'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
