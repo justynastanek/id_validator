@@ -15,8 +15,29 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     // https://mvnrepository.com/artifact/info.picocli/picocli
-    compile group: 'info.picocli', name: 'picocli', version: '2.0.0'
+    compile group: 'info.picocli', name: 'picocli', version: '3.9.6'
 
+
+}
+
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'js.id_validator.Main'
+        )
+    }
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 

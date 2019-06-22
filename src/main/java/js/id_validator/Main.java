@@ -2,22 +2,17 @@ package js.id_validator;
 
 import picocli.CommandLine;
 
+public class Main implements Runnable {
 
-public class Main implements Runnable{
+    @CommandLine.Parameters(index = "0")
+    private String ID;
 
-    @CommandLine.Option(names = {"-id", "--id_number"}, required = true, description = "The user's ID number")
-    String idNumber;
+    public static void main(String[] args) {
+        CommandLine.run(new Main(), args);
+    }
 
     public void run() {
-
-        ID_Validator my_id_validator = new ID_Validator();
-        my_id_validator.validate(idNumber);
-
+        Validator idValidator = new ID_Validator();
+        idValidator.validate(ID);
     }
-
-    public static void main(String... args) {
-        CommandLine.run(new Main(), System.err, args);
-    }
-
-
 }
